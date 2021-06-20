@@ -1,17 +1,48 @@
-// console.log('Hello!');
+var btnEl = document.querySelector("#my-btn");
+var questionEl = document.querySelector("#show-q");
 
-var myStartButton = $('#startBtn');
+var timeRemaining = 20;
+var currentQuestion = 0;
 
-console.log(myStartButton)
+console.log(questions);
 
+function logTimeRemaining() {
+    console.log('There is ${timeRemaining} seconds remaining.');
+}
+ function doThisEverySecond() {
+     logTimeRemaining(timeRemaining);
+     timeRemaining--;
 
+     if (timeRemaining <=0) {
+         console.log("Clearing Interval");
+         clearInterval(myTimer);
+     }
+ }
+ var myTimer = setInterval(doThisEverySecond, 1000);
 
+ function init() {
+     console.log("starting init");
+     
+         var parEl = document.createElement("p");
 
-// add an on click function to my start button
-myStartButton.on('click', function() {
-    myStartButton.css('background-color', 'red')
+         var qObj = questions[currentQuestion];
+         
+         parEl.innerText = qObj.q;
 
-    console.log('Hello world')
+         questionEl.append(parEl);
+
+         for (var i = 0; i < qObj.c.length; i++) {
+             var ansBtnEl - document.createElement("button");
+
+             ansBtnEl.addEventListener("click", function() {
+                 console.log("button was clicked");
+             });
+
+             ansBtnEl.innerText - qObj.c[i];
+             questionEl.append(ansBtnEl);
+         }
+     }
+ }
 
 })
 var questions = [
@@ -70,4 +101,4 @@ var getPlayerInitials = function() {
     console.log("Your initials are " + initials);
     return initials;
 };
-startQuiz();
+init();
