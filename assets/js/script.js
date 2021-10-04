@@ -8,7 +8,9 @@ var choicesEl = document.getElementById("choices");
 var submitBtn = document.getElementById("submit");
 var startBtn = document.getElementById("start");
 var initialsEl = document.getElementById("initials");
-var feedbackEl = document.getElementById("feedback"); function startQuiz() {
+var feedbackEl = document.getElementById("feedback"); 
+
+function startQuiz() {
     var startScreenEl = document.getElementById("start-screen");
     startScreenEl.setAttribute("class", "hide");
     questionsEl.removeAttribute("class");
@@ -38,6 +40,8 @@ function questionClick() {
             time = 0;
         }
         timerEl.textContent = time;
+        feedbackEl.textContent = "Wrong!";
+  } else {
         feedbackEl.textContent = "Correct!";
     }
 }
@@ -78,7 +82,7 @@ function quizEnd() {
       };
       score.push(newScore);
       window.localStorage.setItem("score", JSON.stringify(score));
-      window.location.href = "score.html";
+      window.location.href = "scores.html";
     }
   }
   
